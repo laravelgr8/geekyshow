@@ -778,6 +778,30 @@ $table->string('status')->default(0);
 $table->timestamps();
 
 
+Adds a primary key.
+$table->primary('id');
+
+Adds composite keys.
+$table->primary(['id', 'parent_id']);
+
+Adds a unique
+$table->unique('email');
+
+Adds an index.
+$table->index('state');
+
+
+Drop a primary key from the "users" table.
+$table->dropPrimary('users_id_primary');
+
+Drop a unique index from the "users" table.
+$table->dropUnique('users_email_unique');
+
+Drop a basic index from the "geo" table.
+$table->dropIndex('geo_state_index');
+
+
+
 How to add column:
 ye sabse pahle ek new migration file create karega or waha pe jo column add karna hai usko
 add karenge or last me migrate karenge
