@@ -120,4 +120,55 @@ public function customer()
 
 on controller:
 return Mobile::find(1)->customer;
--------
+======================================
+
+one to Many:-
+syntex:-
+hasMany(Model_class,'foreign_key','local_key');
+
+belongsTo(Model_class,'foreign_key','local_key');
+
+we have 2 table 1. User 2.Post
+one user has multiple post.
+
+on User Model:
+public function post()
+{
+	return $this->hasMany(Post::class);
+}
+
+on Post Model:
+public function user()
+{
+	return $this->belongsTo(User::class);
+}
+
+
+Insert by model:-
+first insert in user data only becouse we want multiple entry in post table 
+$user=new User();
+$user->name="john";
+$user->email="john@gmail.com";
+$user->password="123456";
+$user->save();
+
+
+Now data insert in post table
+function post_insert($id)
+{
+	$user=User::find($id);//yaha id ko hamlog url se recive karenge
+	$post=new Post();
+	$post->title='title1';
+	$post->content='content1';
+	$user->post()->save($post);
+}
+
+
+User model ke through post table record fetch
+$user=user::find(1)->post;
+return $user;
+
+
+Post model ke through user's data fetch
+$post=Post::find(3)->user;
+return $post;
