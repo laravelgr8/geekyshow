@@ -11,6 +11,7 @@ public function run()
 			"name" => $faker->name(),
 			"city" => $faker->city(),
 			"fee" => $faker->randomFloat(2),
+                        'gender' => $faker->randomElement($array = array ('male', 'female')) ,
 		]);
 	}
 }
